@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement", "Studen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperExample", "Dapper\DapperExample.csproj", "{3C213981-D592-4DEE-9B2D-99057E977E88}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFcoreExample", "EFcoreExample\EFcoreExample.csproj", "{7B2FB760-777F-4AC0-992C-B869758FBDD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3C213981-D592-4DEE-9B2D-99057E977E88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C213981-D592-4DEE-9B2D-99057E977E88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C213981-D592-4DEE-9B2D-99057E977E88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B2FB760-777F-4AC0-992C-B869758FBDD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B2FB760-777F-4AC0-992C-B869758FBDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B2FB760-777F-4AC0-992C-B869758FBDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B2FB760-777F-4AC0-992C-B869758FBDD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
