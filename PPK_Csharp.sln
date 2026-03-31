@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperExample", "Dapper\Dap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFcoreExample", "EFcoreExample\EFcoreExample.csproj", "{7B2FB760-777F-4AC0-992C-B869758FBDD0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseFirstExample", "DatabaseFirstExample\DatabaseFirstExample.csproj", "{63CB2B7F-C3F3-463E-8ED9-535C8087265C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7B2FB760-777F-4AC0-992C-B869758FBDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B2FB760-777F-4AC0-992C-B869758FBDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B2FB760-777F-4AC0-992C-B869758FBDD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63CB2B7F-C3F3-463E-8ED9-535C8087265C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63CB2B7F-C3F3-463E-8ED9-535C8087265C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63CB2B7F-C3F3-463E-8ED9-535C8087265C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63CB2B7F-C3F3-463E-8ED9-535C8087265C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
