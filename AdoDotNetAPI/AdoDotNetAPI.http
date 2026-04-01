@@ -1,0 +1,6 @@
+@AdoDotNetAPI_HostAddress = http://localhost:5234
+
+GET {{AdoDotNetAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
