@@ -25,6 +25,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.net Core Web API using 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperAPI", "DapperAPI\DapperAPI.csproj", "{2A4D72FF-BE6E-4B50-BEEA-96F8A9556D03}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.Net Core Web API using Separate ADO.Net Service", "ASP.Net Core Web API using Separate ADO.Net Service", "{90F8F230-1987-4EDF-BE20-313535F84E25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentAPI", "StudentAPI\StudentAPI.csproj", "{BE658071-8160-47B8-9AB7-9D78A64FFCEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,10 @@ Global
 		{2A4D72FF-BE6E-4B50-BEEA-96F8A9556D03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A4D72FF-BE6E-4B50-BEEA-96F8A9556D03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A4D72FF-BE6E-4B50-BEEA-96F8A9556D03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE658071-8160-47B8-9AB7-9D78A64FFCEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE658071-8160-47B8-9AB7-9D78A64FFCEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE658071-8160-47B8-9AB7-9D78A64FFCEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE658071-8160-47B8-9AB7-9D78A64FFCEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +80,7 @@ Global
 		{03F7CE95-EB8B-4106-86BE-ECBFCC861BA1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{3727DC51-52DD-4CA4-84D9-6FE578937A31} = {B2D996B1-2911-48F6-8707-D1A3AB7A8EB6}
 		{2A4D72FF-BE6E-4B50-BEEA-96F8A9556D03} = {1B926EA6-40FA-42E9-9598-836DBA63243D}
+		{BE658071-8160-47B8-9AB7-9D78A64FFCEA} = {90F8F230-1987-4EDF-BE20-313535F84E25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A306BA8-AEB9-40CF-BA42-E7DDDE24CB18}
