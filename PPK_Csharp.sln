@@ -37,6 +37,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Minimal API with Dapper", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperMinimalAPI", "DapperMinimalAPI\DapperMinimalAPI.csproj", "{034B049C-518A-4A61-9CE6-4F92FB4135C0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Minimal API with EFcore", "Minimal API with EFcore", "{5BEAC501-6665-4660-9D67-CA84726BF65E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFcoreMinimalAPI", "EFcoreMinimalAPI\EFcoreMinimalAPI.csproj", "{92B7B75A-AE9D-4E13-9B53-A505C21C7F0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,10 @@ Global
 		{034B049C-518A-4A61-9CE6-4F92FB4135C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{034B049C-518A-4A61-9CE6-4F92FB4135C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{034B049C-518A-4A61-9CE6-4F92FB4135C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92B7B75A-AE9D-4E13-9B53-A505C21C7F0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92B7B75A-AE9D-4E13-9B53-A505C21C7F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92B7B75A-AE9D-4E13-9B53-A505C21C7F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92B7B75A-AE9D-4E13-9B53-A505C21C7F0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +107,7 @@ Global
 		{BE658071-8160-47B8-9AB7-9D78A64FFCEA} = {90F8F230-1987-4EDF-BE20-313535F84E25}
 		{B6A24F3E-5E45-441F-BF90-64E4F6327508} = {D7B9750B-6966-4923-A899-8676346A7D53}
 		{034B049C-518A-4A61-9CE6-4F92FB4135C0} = {0C1F07C2-561F-445A-8EE3-881C1A66C01F}
+		{92B7B75A-AE9D-4E13-9B53-A505C21C7F0A} = {5BEAC501-6665-4660-9D67-CA84726BF65E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A306BA8-AEB9-40CF-BA42-E7DDDE24CB18}
