@@ -17,6 +17,48 @@ namespace MyTodoAPI.Features
                 return Results.Ok(BaseResponse<List<Todo>>.Ok(result.Value, "Todos retrieved successfully."));
             }).WithName("Get Tod0s")
             .WithOpenApi();
+
+            app.MapGet("/api/todos/{id}", async (int id, ITodoApiService service) =>
+            {
+                var result = await service.GetTodoById(id);
+                return Results.Ok(BaseResponse<Todo>.Ok(result.Value));
+            }).WithName("Get todo by id")
+            .WithOpenApi();
+
+            app.MapPost("/api/todos", async (Todo newTodo, ITodoApiService service) =>
+            {
+                var result = await service.CreateTodo(newTodo);
+                if (!result.IsSuccess)
+                {
+                    return Results.BadRequest(BaseResponse<string>.Fail(result.Error));
+                }
+                return Results.Ok(BaseResponse<Todo>.Ok(newTodo));
+            }).WithName("Create toto")
+            .WithOpenApi();
+
+            app.MapPut("/api/todos/{id}", async (int id, Todo updatedTodo, ITodoApiService service) =>
+            {
+                var result = await service.UpdateTodo(id, updatedTodo);
+                if (!result.IsSuccess)
+                {
+                    return Results.BadRequest(BaseResponse<string>.Fail(result.Error));
+                }
+                return Results.Ok(BaseResponse<bool>.Ok(true));
+            }).WithName("Update todo")
+            .WithOpenApi();
+
+            app.MapDelete("/api/todos/{id}", async (int id, ITodoApiService serive) =>
+            {
+                var result = await serive.DeleteTodo(id);
+                if (!result.IsSuccess)
+                {
+                    return Results.BadRequest(BaseResponse<string>.Fail(result.Error));
+                }
+                return Results.Ok(BaseResponse<bool>.Ok(true));
+            }).WithName("Delete todo by id")
+            .WithOpenApi();
         }
+
+
     }
 }

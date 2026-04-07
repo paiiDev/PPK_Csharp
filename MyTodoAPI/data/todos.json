@@ -38,7 +38,7 @@
     },
     {
       "id": 7,
-      "todo": "Solve a Rubik's cube",
+      "todo": "Solve a Rubik\u0027s cube",
       "completed": true,
       "userId": 76
     },
@@ -74,7 +74,7 @@
     },
     {
       "id": 13,
-      "todo": "Text a friend you haven't talked to in a long time",
+      "todo": "Text a friend you haven\u0027t talked to in a long time",
       "completed": true,
       "userId": 2
     },
@@ -92,7 +92,7 @@
     },
     {
       "id": 16,
-      "todo": "Plan a vacation you've always wanted to take",
+      "todo": "Plan a vacation you\u0027ve always wanted to take",
       "completed": true,
       "userId": 162
     },
@@ -173,15 +173,9 @@
       "todo": "Have a photo session with some friends",
       "completed": true,
       "userId": 91
-    },
-    {
-      "id": 30,
-      "todo": "Go to the gym",
-      "completed": true,
-      "userId": 142
     }
   ],
-  "total": 254,
+  "total": 0,
   "skip": 0,
-  "limit": 30
+  "limit": 0
 }
