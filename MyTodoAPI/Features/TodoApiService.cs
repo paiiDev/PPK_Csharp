@@ -23,6 +23,11 @@ namespace MyTodoAPI.Features
         {
             var response = new TodoAPIResponse { todos = todos.ToArray() };
             var jsonString = JsonSerializer.Serialize(response, new JsonSerializerOptions { WriteIndented = true });
+            var dir = Path.GetDirectoryName(_filePath);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
             await File.WriteAllTextAsync(_filePath, jsonString);
         }
         public async Task<Result<List<Todo>>> GetAllTodos()
@@ -50,7 +55,9 @@ namespace MyTodoAPI.Features
             try
             {
                 var todos = await ReadAllData();
-                var todo = todos.FirstOrDefault(t => t.id == id);
+                Console.WriteLine(todos);
+                var todo = todos.FirstOrDefault(t => t.id == id );
+                Console.WriteLine(todo);
                 if (todo is null)
                 {
                     return Result<Todo>.Fail("Todo not found");
@@ -66,8 +73,12 @@ namespace MyTodoAPI.Features
         {
             try
             {
+                if (newTodo is null)
+                {
+                    return Result<Todo>.Fail("Request body is null");
+                }
                 var todos = await ReadAllData();
-                newTodo.id = todos.Any() ? todos.Max(t => t.id) + 1 : 1;
+                newTodo.id = todos.Count != 0 ? todos.Max(t => t.id) + 1 : 1;
                 todos.Add(newTodo);
                 await WriteAllData(todos);
                 return Result<Todo>.Success(newTodo);

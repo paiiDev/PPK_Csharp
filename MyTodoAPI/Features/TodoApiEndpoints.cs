@@ -21,7 +21,11 @@ namespace MyTodoAPI.Features
             app.MapGet("/api/todos/{id}", async (int id, ITodoApiService service) =>
             {
                 var result = await service.GetTodoById(id);
-                return Results.Ok(BaseResponse<Todo>.Ok(result.Value));
+                if (!result.IsSuccess)
+                {
+                    return Results.NotFound(BaseResponse<string>.Fail(result.Error));
+                }
+                return Results.Ok(BaseResponse<Todo>.Ok(result.Value, "Todo retrieved successfully."));
             }).WithName("Get todo by id")
             .WithOpenApi();
 

@@ -33,7 +33,7 @@ namespace HttpClientExample.Features.Todo
                     {
                         return Results.BadRequest(BaseResponse<string>.Fail(data.Error));
                     }
-                    return Results.Ok(BaseResponse<TodoId>.Ok(data.Value));
+                    return Results.Ok(BaseResponse<Todo>.Ok(data.Value));
                 }
                 catch (Exception ex)
                 {

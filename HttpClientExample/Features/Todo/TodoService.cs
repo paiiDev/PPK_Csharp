@@ -1,4 +1,5 @@
 ﻿using CsharpDotNet.shared;
+using System.Data;
 using System.Text.Json;
 
 namespace HttpClientExample.Features.Todo
@@ -23,38 +24,53 @@ namespace HttpClientExample.Features.Todo
                     return Result<List<Todo>>.Fail($"Failed to fetch data: {response.ReasonPhrase}");
                 }
 
-                var data = await response.Content.ReadFromJsonAsync<TodoResponse>();
+                var data = await response.Content.ReadFromJsonAsync<TodoResponse<List<TodoDto>>>();
                 if (data is null || data.data is null)
                 {
                     return Result<List<Todo>>.Fail("Response content is null");
                 }
-                return Result<List<Todo>>.Success(data.data.ToList());
+                var todos = data.data.Select(dto => new Todo
+                {
+                    id = dto.id,
+                    todoTitle = dto.todo,
+                    isDone = dto.completed,
+                    userId = dto.userId
+                }).ToList();
+                return Result<List<Todo>>.Success(todos);
             }
             catch (Exception ex)
             {
                 return Result<List<Todo>>.Fail(ex.Message);
             }
         }
-        public async Task<Result<TodoId>> GetById(int id)
+        public async Task<Result<Todo>> GetById(int id)
         {
             try
             {
                 var response = await _httpClient.GetAsync($"{_baseUrl}/{id}");
                 if (!response.IsSuccessStatusCode)
                 {
-                    return Result<TodoId>.Fail($"Failed to fetch data: {response.ReasonPhrase}");
+                    return Result<Todo>.Fail($"Failed to fetch data: {response.ReasonPhrase}");
                 }
-                var data = await response.Content.ReadFromJsonAsync<GetByIdResponse>();
-                
-                if (data is null)
+                var data = await response.Content.ReadFromJsonAsync<TodoResponse<TodoDto>>();
+               
+                if (data is null || data.data is null)
                 {
-                    return Result<TodoId>.Fail("Response content is null or empty");
+                    return Result<Todo>.Fail("Response content is null or empty");
                 }
-                return Result<TodoId>.Success(data.data);
+                var todo = new Todo
+                {
+                    id = data.data.id,
+                    todoTitle = data.data.todo,
+                    isDone = data.data.completed,
+                    userId = data.data.userId,
+                };
+
+                return Result<Todo>.Success(todo);
             }
             catch (Exception ex)
             {
-                return Result<TodoId>.Fail(ex.Message);
+                return Result<Todo>.Fail(ex.Message);
             }
         }
         public async Task<Result<Todo>> CreateTodo(Todo newTodo)
@@ -66,12 +82,19 @@ namespace HttpClientExample.Features.Todo
                 {
                     return Result<Todo>.Fail($"Failed to create todo: {response.ReasonPhrase}");
                 }
-                var data = await response.Content.ReadFromJsonAsync<TodoResponse>();
-                if (data is null || data.data is null)
+                var data = await response.Content.ReadFromJsonAsync<TodoResponse<TodoDto>>();
+                if (data is null || data.data is null || data.data.todo is null)
                 {
                     return Result<Todo>.Fail("Response content is null");
                 }
-                return Result<Todo>.Success(data.data[0]);
+                var todo = new Todo
+                {
+                    id = data.data.id,
+                    todoTitle = data.data.todo,
+                    isDone = data.data.completed,
+                    userId = data.data.userId
+                };
+                return Result<Todo>.Success(todo);
                 {
 
                 }

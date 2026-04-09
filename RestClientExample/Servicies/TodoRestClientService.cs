@@ -23,7 +23,7 @@ namespace RestClientExample.Servicies
             var request = new RestRequest($"/api/todos/{id}", Method.Get);
             var response = await _client.ExecuteAsync<TodoResponse<TodoDto>>(request);
 
-            if (!response.IsSuccessful || response.Data is null || response.Data is null)
+            if (!response.IsSuccessful || response.Data is null)
             {
                 return Result<Todo>.Fail("API call failed");
             }
