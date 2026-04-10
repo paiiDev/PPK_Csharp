@@ -59,6 +59,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RestClient", "RestClient", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestClientExample", "RestClientExample\RestClientExample.csproj", "{AA7C68D5-A927-4901-9504-AB7D9517A40C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Refit", "Refit", "{208C1F79-F9EC-4C6E-8899-FE2C48C6BD6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefitExample", "RefitExample\RefitExample.csproj", "{CFCABBA3-A1B3-4B7C-B5D5-CEBC17245E5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +137,10 @@ Global
 		{AA7C68D5-A927-4901-9504-AB7D9517A40C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA7C68D5-A927-4901-9504-AB7D9517A40C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA7C68D5-A927-4901-9504-AB7D9517A40C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFCABBA3-A1B3-4B7C-B5D5-CEBC17245E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFCABBA3-A1B3-4B7C-B5D5-CEBC17245E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFCABBA3-A1B3-4B7C-B5D5-CEBC17245E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFCABBA3-A1B3-4B7C-B5D5-CEBC17245E5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,6 +158,7 @@ Global
 		{C706ABF0-389B-4A96-AB4B-B54D82EF2CD3} = {D4D895C9-E4D8-4E1D-A326-CB7DDC8FD70A}
 		{AF87BE5F-9D3F-45D5-AE0A-E59DC733EC7D} = {BD16EBA6-A02F-4983-9103-DF18486BE4EE}
 		{AA7C68D5-A927-4901-9504-AB7D9517A40C} = {0499BFD9-6372-4D50-804B-0AA09CCFF9E3}
+		{CFCABBA3-A1B3-4B7C-B5D5-CEBC17245E5F} = {208C1F79-F9EC-4C6E-8899-FE2C48C6BD6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A306BA8-AEB9-40CF-BA42-E7DDDE24CB18}
