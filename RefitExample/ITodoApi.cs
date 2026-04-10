@@ -12,5 +12,8 @@ namespace RefitExample
     {
         [Get("/api/todos/{id}")]
         Task<TodoResponse<TodoDto>> GetTodo(int id);
+
+        [Get("/api/todos")]
+        Task<TodoResponse<List<TodoDto>>> GetAllTodo();
     }
 }

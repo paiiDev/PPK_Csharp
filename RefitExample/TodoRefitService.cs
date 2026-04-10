@@ -48,5 +48,33 @@ namespace RefitExample
                 return Result<Todo>.Fail(ex.Message);
             }
         }
+
+        public async Task<Result<List<Todo>>> GetAllTodo()
+        {
+            try
+            {
+                var response = await _api.GetAllTodo();
+                if (response is null)
+                {
+                    return Result<List<Todo>>.Fail("Response body is null");
+                }
+                if(!response.success)
+                {
+                    return Result<List<Todo>>.Fail(response.message ?? "API returned failure");
+                }
+                var todos = response.data.Select(t => new Todo
+                {
+                    id = t.id,
+                    title = t.todo,
+                    isDone = t.completed,
+                    userId = t.userId,
+                }).ToList();
+                return Result<List<Todo>>.Success(todos);
+
+            } catch (Exception ex)
+            {
+                return Result<List<Todo>>.Fail(ex.Message);
+            }
+        }
     }
 }

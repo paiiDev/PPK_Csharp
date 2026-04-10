@@ -46,5 +46,31 @@ namespace RestClientExample.Servicies
             return Result<Todo>.Success(todo);
 
         }
+
+        public async Task<Result<List<Todo>>> GetAllTodo()
+        {
+            try
+            {
+                var request = new RestRequest($"/api/todos", Method.Get);
+                var response = await _client.ExecuteAsync<TodoResponse<List<TodoDto>>>(request);
+                if(response is null || !response.IsSuccessful || response.Data is null)
+                {
+                    return Result<List<Todo>>.Fail("API call failed");
+                }
+                var dtos = response.Data.data;
+                var todos = dtos.Select(dto => new Todo
+                {
+                    id = dto.id,
+                    todo = dto.todo,
+                    completed = dto.completed,
+                    userId = dto.userId,
+                }).ToList();
+
+                return Result<List<Todo>>.Success(todos);
+            } catch (Exception e)
+            {
+                return Result<List<Todo>>.Fail(e.Message);
+            }
+        }
     }
 }
