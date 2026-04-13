@@ -19,13 +19,13 @@ namespace DIwithDataBase.Repositories
             _context = context;
         }
         public async Task<Student> GetStudentByIdAsync(int id)
-        {
-           
-                
+        {     
               return await _context.Students.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
-                
-               
-            
+        }
+
+        public async Task<List<Student>> GetAllStudentsAsync()
+        {
+            return await _context.Students.AsNoTracking().Where(x => !x.DeleteFlag).ToListAsync();
         }
     }
 }

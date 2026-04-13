@@ -11,5 +11,6 @@ namespace DIwithDataBase.Interfaces
     public interface IStudentService
     {
         Task<Result<DomainStudentDto>> GetStudent(int id);
+        Task<Result<List<DomainStudentDto>>> GetStudents();
     }
 }

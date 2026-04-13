@@ -34,11 +34,15 @@ var host = builder.Build();
 
 var service = host.Services.GetRequiredService<IStudentService>();
 
-var result = await service.GetStudent(12);
+//var result = await service.GetStudent(12);
+var result = await service.GetStudents();
 if (!result.IsSuccess)
 {
     Console.WriteLine(result.Error);
 }
-Console.WriteLine("-------------");
-Console.WriteLine($"Name: {result.Value.Name}");
-Console.WriteLine($"Age: {result.Value.Age}");
+
+foreach(var student in result.Value)
+{
+    Console.WriteLine($"Name: {student.Name}");
+    Console.WriteLine($"Age: {student.Age}");
+}

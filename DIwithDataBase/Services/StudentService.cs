@@ -40,5 +40,28 @@ namespace DIwithDataBase.Services
                 return Result<DomainStudentDto>.Failure(ex.Message);
             }
         }
+
+        public async Task<Result<List<DomainStudentDto>>> GetStudents()
+        {
+            try
+            {
+                var students = await _repo.GetAllStudentsAsync();
+                if (students is null)
+                {
+                    return Result<List<DomainStudentDto>>.Failure("No data found");
+                }
+                var dto = students.Select(x => new DomainStudentDto
+                {
+                    Name = x.Name,
+                    Age = x.Age,
+                }).ToList();
+
+                return Result<List<DomainStudentDto>>.Success(dto);
+            }
+            catch (Exception ex)
+            {
+                return Result<List<DomainStudentDto>>.Failure(ex.Message);
+            }
+        }
     }
 }

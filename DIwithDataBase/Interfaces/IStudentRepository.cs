@@ -11,5 +11,6 @@ namespace DIwithDataBase.Interfaces
     public interface IStudentRepository
     {
         Task<Student> GetStudentByIdAsync(int id);
+        Task<List<Student>> GetAllStudentsAsync();
     }
 }
