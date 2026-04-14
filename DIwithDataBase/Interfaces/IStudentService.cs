@@ -1,5 +1,6 @@
 ﻿using DIwithDataBase.Common;
 using DIwithDataBase.DTOs;
+using DIwithDataBase.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace DIwithDataBase.Interfaces
     {
         Task<Result<DomainStudentDto>> GetStudent(int id);
         Task<Result<List<DomainStudentDto>>> GetStudents();
+
+        Task<Result<DomainStudentDto>> CreateStudent(Student student);
     }
 }

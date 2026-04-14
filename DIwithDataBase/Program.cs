@@ -1,5 +1,7 @@
 ﻿using DIwithDataBase.DataAccess;
+using DIwithDataBase.DTOs;
 using DIwithDataBase.Interfaces;
+using DIwithDataBase.Models;
 using DIwithDataBase.Repositories;
 using DIwithDataBase.Services;
 using Microsoft.EntityFrameworkCore;
@@ -34,15 +36,27 @@ var host = builder.Build();
 
 var service = host.Services.GetRequiredService<IStudentService>();
 
-//var result = await service.GetStudent(12);
-var result = await service.GetStudents();
-if (!result.IsSuccess)
-{
-    Console.WriteLine(result.Error);
-}
+////var result = await service.GetStudent(12);
+//var result = await service.GetStudents();
+//if (!result.IsSuccess)
+//{
+//    Console.WriteLine(result.Error);
+//}
 
-foreach(var student in result.Value)
+//foreach(var student in result.Value)
+//{
+//    Console.WriteLine($"Name: {student.Name}");
+//    Console.WriteLine($"Age: {student.Age}");
+//}
+
+Console.WriteLine("Please enter student name");
+var name = Console.ReadLine();
+Console.WriteLine("Please enter student age");
+var age = Convert.ToInt32(Console.ReadLine());
+var student = new Student
 {
-    Console.WriteLine($"Name: {student.Name}");
-    Console.WriteLine($"Age: {student.Age}");
-}
+    Name = name,
+    Age = age
+};
+
+var result = await service.CreateStudent(student);

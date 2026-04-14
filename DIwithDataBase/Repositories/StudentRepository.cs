@@ -27,5 +27,19 @@ namespace DIwithDataBase.Repositories
         {
             return await _context.Students.AsNoTracking().Where(x => !x.DeleteFlag).ToListAsync();
         }
+        
+        public async Task<bool> CreateStudent(Student student)
+        {
+            using var context = _context;
+            var stu = new Student
+            {
+                Name = student.Name,
+                Age = student.Age,
+
+            };
+            var result = context.Students.Add(stu);
+            context.SaveChanges();
+            return true;
+        }
     }
 }

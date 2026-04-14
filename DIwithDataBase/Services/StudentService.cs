@@ -1,4 +1,5 @@
-﻿using DIwithDataBase.Common;
+﻿using Azure;
+using DIwithDataBase.Common;
 using DIwithDataBase.DTOs;
 using DIwithDataBase.Interfaces;
 using DIwithDataBase.Models;
@@ -61,6 +62,28 @@ namespace DIwithDataBase.Services
             catch (Exception ex)
             {
                 return Result<List<DomainStudentDto>>.Failure(ex.Message);
+            }
+        }
+
+        public async Task<Result<DomainStudentDto>> CreateStudent(Student student)
+        {
+            try
+            {
+                var result = _repo.CreateStudent(student);
+                if(result is null)
+                {
+                    return Result<DomainStudentDto>.Failure("Data creation failed");
+                }
+                var dto = new DomainStudentDto
+                {
+                    Name = student.Name,
+                    Age = student.Age,
+                };
+                return Result<DomainStudentDto>.Success(dto);
+            }
+            catch (Exception ex)
+            {
+                return Result<DomainStudentDto>.Failure(ex.Message);
             }
         }
     }
