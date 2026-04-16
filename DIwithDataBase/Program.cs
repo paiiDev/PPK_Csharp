@@ -53,7 +53,7 @@ Console.WriteLine("Please enter student name");
 var name = Console.ReadLine();
 Console.WriteLine("Please enter student age");
 var age = Convert.ToInt32(Console.ReadLine());
-var student = new Student
+var student = new DomainStudentDto
 {
     Name = name,
     Age = age

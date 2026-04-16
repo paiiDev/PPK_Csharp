@@ -1,4 +1,5 @@
 ﻿using DIwithDataBase.Common;
+using DIwithDataBase.DTOs;
 using DIwithDataBase.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,6 @@ namespace DIwithDataBase.Interfaces
         Task<Student> GetStudentByIdAsync(int id);
         Task<List<Student>> GetAllStudentsAsync();
 
-        Task<bool> CreateStudent(Student student);
+        Task<Student> CreateStudent(Student student);
     }
 }

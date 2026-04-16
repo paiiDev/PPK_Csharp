@@ -1,5 +1,6 @@
 ﻿using DIwithDataBase.Common;
 using DIwithDataBase.DataAccess;
+using DIwithDataBase.DTOs;
 using DIwithDataBase.Interfaces;
 using DIwithDataBase.Models;
 using Microsoft.EntityFrameworkCore;
@@ -28,18 +29,12 @@ namespace DIwithDataBase.Repositories
             return await _context.Students.AsNoTracking().Where(x => !x.DeleteFlag).ToListAsync();
         }
         
-        public async Task<bool> CreateStudent(Student student)
+        public async Task<Student> CreateStudent(Student student)
         {
-            using var context = _context;
-            var stu = new Student
-            {
-                Name = student.Name,
-                Age = student.Age,
-
-            };
-            var result = context.Students.Add(stu);
-            context.SaveChanges();
-            return true;
+            
+            await _context.Students.AddAsync(student);
+            await _context.SaveChangesAsync();
+            return student;
         }
     }
 }

@@ -65,20 +65,29 @@ namespace DIwithDataBase.Services
             }
         }
 
-        public async Task<Result<DomainStudentDto>> CreateStudent(Student student)
+        public async Task<Result<DomainStudentDto>> CreateStudent(DomainStudentDto studentInput)
         {
             try
             {
-                var result = _repo.CreateStudent(student);
+                var student = new Student
+                {
+                    Name = studentInput.Name,
+                    Age = studentInput.Age,
+                };
+
+                var result = await _repo.CreateStudent(student);
                 if(result is null)
                 {
                     return Result<DomainStudentDto>.Failure("Data creation failed");
                 }
+
                 var dto = new DomainStudentDto
                 {
+                    Id  = student.Id,
                     Name = student.Name,
                     Age = student.Age,
                 };
+
                 return Result<DomainStudentDto>.Success(dto);
             }
             catch (Exception ex)
