@@ -14,6 +14,11 @@ namespace DIwithDataBase.Interfaces
         Task<Student> GetStudentByIdAsync(int id);
         Task<List<Student>> GetAllStudentsAsync();
 
-        Task<Student> CreateStudent(Student student);
+        Task<Student> CreateStudentAsync(Student student);
+
+        Task<Student> UpdateStudentAsync(Student student);
+
+        Task<bool> DeleteStudentAsync(Student student);
+
     }
 }

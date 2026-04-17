@@ -29,12 +29,27 @@ namespace DIwithDataBase.Repositories
             return await _context.Students.AsNoTracking().Where(x => !x.DeleteFlag).ToListAsync();
         }
         
-        public async Task<Student> CreateStudent(Student student)
+        public async Task<Student> CreateStudentAsync(Student student)
         {
             
             await _context.Students.AddAsync(student);
             await _context.SaveChangesAsync();
             return student;
+        }
+
+        public async Task<Student> UpdateStudentAsync(Student student)
+        {
+            _context.Students.Update(student);
+            await _context.SaveChangesAsync();
+            return student;
+        }
+
+
+        public async Task<bool> DeleteStudentAsync(Student student)
+        {
+            _context.Students.Remove(student);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

@@ -75,7 +75,7 @@ namespace DIwithDataBase.Services
                     Age = studentInput.Age,
                 };
 
-                var result = await _repo.CreateStudent(student);
+                var result = await _repo.CreateStudentAsync(student);
                 if(result is null)
                 {
                     return Result<DomainStudentDto>.Failure("Data creation failed");
@@ -95,5 +95,60 @@ namespace DIwithDataBase.Services
                 return Result<DomainStudentDto>.Failure(ex.Message);
             }
         }
-    }
+
+        public async Task<Result<DomainStudentDto>> UpdateStudent(DomainStudentDto student)
+        {
+            try
+            {
+                var existingStudent = await _repo.GetStudentByIdAsync(student.Id);
+                if (existingStudent is null)
+                {
+                    return Result<DomainStudentDto>.Failure("Student not found");
+                }
+
+         
+
+                existingStudent.Name = student.Name;
+                existingStudent.Age = student.Age;
+
+                await _repo.UpdateStudentAsync(existingStudent);
+                
+                var dto = new DomainStudentDto
+                {
+                    Id = existingStudent.Id,
+                    Name = existingStudent.Name,
+                    Age = existingStudent.Age,
+                };
+
+                return Result<DomainStudentDto>.Success(dto);
+
+            }
+            catch (Exception ex)
+            {
+                return Result<DomainStudentDto>.Failure(ex.Message);
+            }
+        }
+
+        public async Task<Result<bool>> DeleteStudent(int id)
+        {
+            try
+            {
+                var existingStudent = await _repo.GetStudentByIdAsync(id);
+                if (existingStudent is null)
+                {
+                    return Result<bool>.Failure("Student not found");
+                }
+                var result = await _repo.DeleteStudentAsync(existingStudent);
+                if (!result)
+                {
+                    return Result<bool>.Failure("Failed to delete student");
+                }
+                return Result<bool>.Success(true);
+            }
+            catch (Exception ex)
+            {
+                return Result<bool>.Failure(ex.Message);
+            }
+        }
+        }
 }

@@ -15,5 +15,10 @@ namespace DIwithDataBase.Interfaces
         Task<Result<List<DomainStudentDto>>> GetStudents();
 
         Task<Result<DomainStudentDto>> CreateStudent(DomainStudentDto student);
+
+        Task<Result<DomainStudentDto>> UpdateStudent(DomainStudentDto student);
+
+        Task<Result<bool>> DeleteStudent(int id);
+
     }
 }
