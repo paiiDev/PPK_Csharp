@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Blog</title>
+  </head>
+  <body>
+    <form class="max-w-sm mx-auto p-4 bg-white shadow rounded-lg mt-5">
+      <div class="mb-5">
+        <label
+          for="BlogTitle"
+          class="block mb-2 text-sm font-medium text-gray-900"
+          >Blog Title</label
+        >
+        <input
+          type="text"
+          id="BlogTitle"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          placeholder="Enter blog title"
+          required
+        />
+      </div>
+      <div class="mb-5">
+        <label
+          for="BlogContent"
+          class="block mb-2 text-sm font-medium text-gray-900"
+          >Blog Content</label
+        >
+        <textarea
+          type="text"
+          id="BlogContent"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          placeholder="Enter blog content"
+          required
+        ></textarea>
+      </div>
+      <div class="mb-5">
+        <label for="Author" class="block mb-2 text-sm font-medium text-gray-900"
+          >Author</label
+        >
+        <input
+          type="text"
+          id="Author"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          placeholder="Enter author name"
+          required
+        />
+      </div>
+      <div class="flex justify-between items-between">
+        <button
+          id="submitBtn"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 p-2.5 text-center mx-1"
+        >
+          Submit
+        </button>
+
+        <button
+          id="cancelBtn"
+          class="text-white bg-gray-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 p-2.5 text-center mx-1"
+        >
+          Cancel</button
+        >`
+      </div>
+    </form>
+    <div>
+      <h2 class="text-2xl font-bold mt-10 mb-5 text-center">Manage Blogs</h2>
+     <div class="overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-200 bg-white text-sm">
+    <thead class="bg-gray-50">
+      <tr>
+        <th class="px-4 py-2 font-medium text-gray-900 text-left">No.</th>
+        <th class="px-4 py-2 font-medium text-gray-900 text-left">Title</th>
+        <th class="px-4 py-2 font-medium text-gray-900 text-left">Content</th>
+        <th class="px-4 py-2 font-medium text-gray-900 text-left">Author</th>
+        <th class="px-4 py-2 font-medium text-gray-900 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-100" id="tblBlogs">
+     
+    </tbody>
+  </table>
+</div>
+
+    <script src="jquery.min.js"></script>
+    <script src="ui.js"></script>
+    <script src="app.js"></script>
+
+  </body>
+</html>
