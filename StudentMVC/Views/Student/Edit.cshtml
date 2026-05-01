@@ -1,0 +1,51 @@
+﻿@model EditStudentRequestDto
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2 class="text-center my-5">Edit Student</h2>
+
+@if (TempData["Message"] != null)
+{
+    var isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+    var alertClass = isSuccess ? "alert-success" : "alert-danger";
+
+    <div class="alert @alertClass mb-3">
+        @TempData["Message"]
+    </div>
+}
+
+<form asp-controller="Student"
+      asp-action="Edit"
+      method="post">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="mb-3">
+                <label>Student Name</label>
+                <input asp-for="Name" type="text" class="form-control form-control-lg" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label>Age</label>
+                <input asp-for="Age" type="number" class="form-control form-control-lg" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 h-25">
+                Save Student
+            </button>
+
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

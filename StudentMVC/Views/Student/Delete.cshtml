@@ -1,0 +1,22 @@
+﻿@model StudentResponseDto
+
+<h2>Delete Confirmation</h2>
+
+<div class="alert alert-danger">
+    <strong>Warning!</strong> Are you sure to delete this student? This action cannot be undone.
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <p><strong>Student Name:</strong> @Model.Name</p>
+        <p><strong>Age:</strong> @Model.Age</p>
+    </div>
+</div>
+
+<form asp-controller="Student" asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+    <button type="submit" class="btn btn-danger">Yes, Delete!</button>
+</form>

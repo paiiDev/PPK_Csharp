@@ -1,0 +1,35 @@
+﻿@model CreateStudentRequestDto
+
+<h2 class="text-center my-5">Create New Student</h2>
+
+<form asp-controller="Student"
+      asp-action="Create"
+      method="post">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="mb-3">
+                <label>Student Name</label>
+                <input asp-for="Name" type="text" class="form-control form-control-lg" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label>Age</label>
+                <input asp-for="Age" type="number" class="form-control form-control-lg" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 h-25">
+                Save Student
+            </button>
+
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

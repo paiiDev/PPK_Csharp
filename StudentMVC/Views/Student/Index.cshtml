@@ -3,7 +3,19 @@
 @{
     ViewData["Title"] = "Manage Student";
 }
-<h1 class="text-center">Manage Students</h1>
+<h1 class="text-center mb-5">Manage Students</h1>
+
+@if (TempData["Message"] != null)
+{
+    var isSuccess = (bool)TempData["IsSuccess"];
+    var alertClass = isSuccess ? "alert-success" : "alert-danger";
+
+    <div class="alert @alertClass">
+        @TempData["Message"]
+    </div>
+}
+
+<a asp-controller="Student" asp-action="Create" class="btn btn-outline-success mb-5">Add New Student</a>
 
 <table class="table">
     <thead>
@@ -11,6 +23,7 @@
             <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Age</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -20,8 +33,25 @@
             
             <tr>
                 <th scope="row">@(i+1)</th>
-                <td>@student.Name</td>
-                <td>@student.Age</td>
+                <td scope="row">@student.Name</td>
+                <td scope="row">@student.Age</td>
+                <td scope="row">
+                        <a asp-controller="Student" 
+                           asp-action="Edit" 
+                           asp-route-id="@student.Id"
+                           class="btn btn-warning btn-sm"
+                        >
+                            Edit
+                        </a>
+
+                        <a asp-controller="Student"
+                           asp-action="Delete"
+                           asp-route-id="@student.Id"
+                           class="btn btn-danger btn-sm"
+                        >
+                            Delete
+                        </a>
+                </td>
             </tr>
         }
        
