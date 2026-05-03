@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "Manage Student";
+}
+
+
+<h1 class="text-center mb-5">Manage Students</h1>
+
+<div id="alertBox" class="mb-3"></div>
+
+<a asp-controller="Student" asp-action="Create" class="btn btn-outline-success mb-5">Add New Student</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody id="tblStudents">
+       
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        function loadStudents() {
+            console.log("Loading students...");
+            $.ajax({
+                url: '/Student/GetAllStudents',
+                type: 'GET',
+                success: function(response) {
+                    console.log(response);
+                    if(response.isSuccess){
+                        let rows = "";
+                           response.data.forEach((student, index) => {
+                            rows += `<tr>
+                                        <td>${index+1}</td>
+                                        <td>${student.name}</td>
+                                        <td>${student.age}</td>
+                                        <td>
+                                            <button id="editBtn" class="btn btn-sm btn-primary">Edit</button>
+                                            <button id="deleteBtn" class="btn btn-sm btn-danger">Delete</button>
+                                        </td>
+                                    </tr>`;
+                           });
+                           $('#tblStudents').html(rows);
+                    }
+                   
+                },
+                error: function() {
+                    showAlert("Failed to load students.", false);
+                }
+            })
+        }
+
+        $(document).ready(function() {
+
+            const alertMessage = localStorage.getItem("alertMessage");
+            const alertType = localStorage.getItem("alertType");
+
+            if(alertMessage){
+                showAlert(alertMessage, alertType === "success");
+
+                localStorage.removeItem("alertMessage");
+                localStorage.removeItem("alertType");
+            }
+
+            loadStudents();
+        });
+
+       
+
+    </script>
+}

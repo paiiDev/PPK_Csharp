@@ -1,0 +1,63 @@
+﻿
+<h2 class="text-center my-5">Create New Student</h2>
+
+<div id="alertBox" class="mb-3"></div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="mb-3">
+                <label>Student Name</label>
+                <input id="studentName"  type="text" class="form-control form-control-lg" />
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label>Age</label>
+                <input id="studentAge" type="number" class="form-control form-control-lg" />
+                <span class="text-danger"></span>
+            </div>
+
+            <button type="button" id="saveBtn" class="btn btn-primary w-100 h-25">
+                Save Student
+            </button>
+
+        </div>
+    </div>
+
+
+@section Scripts {
+    <script>
+        $('#saveBtn').click(function(e) {
+            e.preventDefault();
+            var data = {
+                Name: $('#studentName').val(),
+                Age: $('#studentAge').val()
+            };
+          
+
+            $.ajax({
+                url: '/Student/CreateAjax',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function(response) {
+                    if(response.isSuccess) {
+                        ClearFields();
+                        localStorage.setItem("alertMessage", response.message);
+                        localStorage.setItem("alertType", "success");
+                        window.location.replace('/Student/Index');
+                    } else {
+                        showAlert(response.message, false);
+                        ClearFields();
+                    }
+                }
+            })
+        })
+
+        function ClearFields() {
+            $('#studentName').val('');
+            $('#studentAge').val('');
+        }   
+    </script>
+}
