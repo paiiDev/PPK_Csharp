@@ -53,7 +53,7 @@ namespace StudentMVCajax.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditAjax(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             var student = await _studentService.GetStudentByIdAsync(id);
             if (!student.IsSuccess)
@@ -72,48 +72,35 @@ namespace StudentMVCajax.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(EditStudentRequestDto request)
+        public async Task<IActionResult> EditAjax([FromBody]EditStudentRequestDto request)
         {
             if (!ModelState.IsValid)
             {
-                return View(request);
+                return Json(new { isSuccess = false, message = "Invalid data" });
             }
             var result = await _studentService.UpdateStudentAsync(request.Id, request);
             if (!result.IsSuccess)
             {
-                TempData["IsSuccess"] = false;
-                TempData["Message"] = result.Error;
-                return View(request);
+               return Json(new { isSuccess = false, message = result.Error });
             }
-            TempData["IsSuccess"] = true;
-            TempData["Message"] = "Student Updated Successfully";
-            return RedirectToAction("Index");
+            return Json(new { isSuccess = true, message = "Student updated successfully" });
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var student = await _studentService.GetStudentByIdAsync(id);
-            if (student is null)
-            {
-                return RedirectToAction("Index");
-            }
-            return View(student.Value);
-        }
+        
 
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if(id <= 0)
+            {
+                return Json(new { isSuccess = false, message = "Invalid student ID" });
+            }
             var result = await _studentService.DeleteStudentAsync(id);
             if (!result.IsSuccess)
             {
-                TempData["IsSuccess"] = false;
-                TempData["Message"] = result.Error;
-                return RedirectToAction("Index");
+                return Json(new { isSuccess = false, message = result.Error });
             }
-            TempData["IsSuccess"] = true;
-            TempData["Message"] = "Student Deleted Successfully";
-            return RedirectToAction("Index");
+            return Json(new { isSuccess = true, message = "Student Deleted Successfully" }) ;
 
         }
     }

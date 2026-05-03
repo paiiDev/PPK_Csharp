@@ -9,13 +9,13 @@
             <div class="mb-3">
                 <label>Student Name</label>
                 <input id="studentName"  type="text" class="form-control form-control-lg" />
-                <span class="text-danger"></span>
+                <span id="nameError" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
                 <label>Age</label>
                 <input id="studentAge" type="number" class="form-control form-control-lg" />
-                <span class="text-danger"></span>
+                <span id="ageError" class="text-danger"></span>
             </div>
 
             <button type="button" id="saveBtn" class="btn btn-primary w-100 h-25">
@@ -30,6 +30,29 @@
     <script>
         $('#saveBtn').click(function(e) {
             e.preventDefault();
+
+            $('#nameError').text('');
+            $('#ageError').text('');
+
+            var nameValue = $('#studentName').val().trim();
+            var ageValue = $('#studentAge').val().trim();
+
+            var isValid = true; 
+
+            if (nameValue === "") {
+                $('#nameError').text('Must enter student name');
+                isValid = false;
+            }
+
+            if (ageValue === "" || isNaN(ageValue) || parseInt(ageValue) <= 0) {
+                $('#ageError').text('Must enter a valid age');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                return;
+            }
+
             var data = {
                 Name: $('#studentName').val(),
                 Age: $('#studentAge').val()
@@ -58,6 +81,8 @@
         function ClearFields() {
             $('#studentName').val('');
             $('#studentAge').val('');
+            $('#nameError').text('');
+            $('#ageError').text('');
         }   
     </script>
 }
