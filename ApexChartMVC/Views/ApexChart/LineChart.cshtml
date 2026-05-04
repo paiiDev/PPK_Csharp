@@ -1,0 +1,37 @@
+﻿@model ChartModel
+
+<div id="chart"></div>
+
+@section Scripts {
+    <script>
+
+        const _series = @Html.Raw(Json.Serialize(Model.Series));
+        const _labels = @Html.Raw(Json.Serialize(Model.Labels));
+
+        var options = {
+            series: _series,
+            chart: {
+                height: 380,
+                type: 'line'   // 🔥 changed from pie → line
+            },
+            xaxis: {
+                categories: _labels   // 🔥 labels moved here
+            },
+            title: {
+                text: 'Monthly Average Temperature'
+            },
+            yaxis: {
+                title: {
+                    text: 'Temperature (°C)'
+                }
+            },
+            dataLabels: {
+                enabled: true
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
+    </script>
+}
