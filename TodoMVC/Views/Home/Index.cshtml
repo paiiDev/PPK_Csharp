@@ -1,0 +1,32 @@
+﻿@model List<TodoMVC.Models.Todo>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Todo</th>
+            <th>Completed</th>
+            <th>User ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todo in Model)
+        {
+            <tr>
+                <td>@todo.id</td>
+                <td>@todo.todo</td>
+                <td>@todo.completed</td>
+                <td>@todo.userId</td>
+            </tr>
+        }
+    </tbody>
+</table>
