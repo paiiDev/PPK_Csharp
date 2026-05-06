@@ -7,17 +7,35 @@ namespace MyTodoAPI.Features
     public class TodoApiService : ITodoApiService
     {
         private readonly string _filePath = "C:\\Users\\PAII\\Desktop\\PPK_Csharp\\MyTodoAPI\\data\\todos.json";
+        public readonly ILogger<TodoApiService> _logger;
+
+        public TodoApiService(ILogger<TodoApiService> logger)
+        {
+            _logger = logger;
+        }
 
         private async Task<List<Todo>> ReadAllData()
         {
-            if(!File.Exists(_filePath))
+            _logger.LogInformation("ReadAllData: Method started.");
+            try
             {
-                return new List<Todo>();
+                if (!File.Exists(_filePath))
+                {
+                    return new List<Todo>();
+                }
+                var jsonString = await File.ReadAllTextAsync(_filePath);
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                var response = JsonSerializer.Deserialize<TodoAPIResponse>(jsonString, options);
+                return response?.todos.ToList() ?? new List<Todo>();
+                _logger.LogDebug("Reading data");
+
             }
-            var jsonString = await File.ReadAllTextAsync(_filePath);
-            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var response = JsonSerializer.Deserialize<TodoAPIResponse>(jsonString, options);
-            return response?.todos.ToList() ?? new List<Todo>();
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occured in ReadAllData method");
+                throw;
+            }
+            
         }
         private async Task WriteAllData(List<Todo> todos)
         {
