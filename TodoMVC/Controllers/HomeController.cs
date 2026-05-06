@@ -18,16 +18,26 @@ namespace TodoMVC.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var response = await _httpClientService.SendAsync<BaseResponse<List<Todo>>>("api/todos", Enums.EnumHttpMethod.Get);
-            if (response != null && response.data != null)
+            _logger.LogInformation("HomeController Index action called. Fetching todos from API.");
+            try
             {
-                return View(response.data);
-            }
-            else
+                _logger.LogDebug("Sending GET request to API endpoint: api/todos");
+                var response = await _httpClientService.SendAsync<BaseResponse<List<Todo>>>("api/todos", Enums.EnumHttpMethod.Get);
+                if (response != null && response.data != null)
+                {
+                    return View(response.data);
+                }
+                else
+                {
+                    _logger.LogError("Failed to fetch todos from API. Message: {Message}", response?.message);
+                    return View(new List<Todo>());
+                }
+            } catch (Exception ex)
             {
-                _logger.LogError("Failed to fetch todos from API. Message: {Message}", response?.message);
+                _logger.LogError(ex, "An error occurred while fetching todos from API.");
                 return View(new List<Todo>());
             }
+           
         }
 
         public IActionResult Privacy()
