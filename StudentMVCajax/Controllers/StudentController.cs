@@ -7,17 +7,24 @@ namespace StudentMVCajax.Controllers
     public class StudentController : Controller
     {
         private readonly IStudentService _studentService;
-        public StudentController(IStudentService studentService)
+        private readonly ILogger<StudentController> _logger;
+        public StudentController(ILogger<StudentController> logger ,IStudentService studentService)
         {
             _studentService = studentService;
+            _logger = logger;
         }
         public async Task<IActionResult> Index()
         {
+            _logger.LogInformation("User visited index page");
             return View();
         }
 
         public async Task<IActionResult> GetAllStudents()
         {
+            _logger.LogInformation("GetAllStudents method started");
+            try
+            {
+                _logger.LogInformation("Fetching all students from service");
             var result = await _studentService.GetAllStudentsAsync();
             Console.WriteLine(result);
             if (!result.IsSuccess)
@@ -25,6 +32,12 @@ namespace StudentMVCajax.Controllers
                 return Json(new { isSuccess = false, message = result.Error });
             }
             return Json(new { isSuccess = true, data = result.Value });
+            } catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching students");
+                return Json(new { isSuccess = false, message = "An error occurred while fetching students" });
+            }
+            
         }
 
 
