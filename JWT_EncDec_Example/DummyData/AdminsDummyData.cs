@@ -4,10 +4,10 @@ namespace JWT_EncDec_Example.DummyData
 {
     public static class AdminsDummyData
     {
-        public static List<Admin> Admins { get; } = new List<Admin>
+        public static List<AdminModel> Admins { get; } = new List<AdminModel>
         {
-            new Admin { Id = 1,UserName = "admin", Password = "admin123", Role = "Admin" },
-            new Admin { Id = 2 ,UserName = "admin", Password = "admin123", Role = "admin" },
+            new AdminModel { Id = 1,UserName = "admin", Password = "admin123", Role = "Admin" },
+            new AdminModel { Id = 2 ,UserName = "admin", Password = "admin123", Role = "admin" },
         };
     }
 }

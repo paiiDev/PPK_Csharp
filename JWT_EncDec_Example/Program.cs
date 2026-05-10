@@ -1,4 +1,6 @@
+using JWT_EncDec_Example.Helpers.EncryptService;
 using JWT_EncDec_Example.Services;
+using JWT_EncDec_Example.Services.Student;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +31,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IEncryptionService, EncryptService>();
+builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
