@@ -1,7 +1,9 @@
 using JWT_EncDec_Example.DTOs;
+using JWT_EncDec_Example.Filters;
 using JWT_EncDec_Example.Services.Student;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace JWT_EncDec_Example.Controllers
 {
@@ -29,6 +31,8 @@ namespace JWT_EncDec_Example.Controllers
             return Ok(result);
         }
 
+
+        [ServiceFilter(typeof(PerformanceLogFilter))]
         [HttpGet("Get all student")]
         public IActionResult GetAllStudent()
         {
