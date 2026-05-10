@@ -32,5 +32,18 @@ namespace JWT_EncDec_Example.Services.Student
             return encryptedData;
 
         }
+
+
+        public List<StudentResponseDto> GetStudents()
+        {
+            return StudentDummyData.Students.Select(x => new StudentResponseDto
+            {
+                Name = x.Name,
+                PhoneNumber = _encryptionService.Decrypt(x.PhoneNumber),
+                Email = _encryptionService.Decrypt(x.Email),
+                Nrc = x.Nrc
+            }).ToList();
+
+        }
     }
 }

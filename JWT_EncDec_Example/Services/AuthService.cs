@@ -19,11 +19,11 @@ namespace JWT_EncDec_Example.Services
                 return new AdminLoginResponseDto { IsSuccessful = false, Message = "Ivalid username or password" };
 
             }
-              var token = _tokenService.GenerateToken(admin.Id, admin.UserName, admin.Role);
+              var token = _tokenService.GenerateToken(admin.Id, admin.UserName, admin.Role ?? "User");
                 return new AdminLoginResponseDto
                 {
                     UserName = admin.UserName,
-                    Role = admin.Role,
+                    Role = admin.Role!,
                     Token = token
                 };
 

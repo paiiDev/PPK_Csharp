@@ -1,32 +1,39 @@
-﻿using JWT_EncDec_Example.DTOs;
+using JWT_EncDec_Example.DTOs;
 using JWT_EncDec_Example.Services.Student;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JWT_EncDec_Example.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class StudentController : ControllerBase
     {
         private readonly IStudentService _studentService;
+
         public StudentController(IStudentService studentService)
         {
             _studentService = studentService;
         }
 
-        [Authorize("AdminOnly")]
-        [HttpPost("Admin")]
-        public IActionResult CreateStudent(StudentRequestDto request)
+        [HttpPost]
+        public IActionResult CreateStudent([FromBody] StudentRequestDto request)
         {
-            var result = _studentService.CreateStudent(request);
-            if(request.Id == 0)
+            if (request is null)
             {
-                return BadRequest(result);
-            }
+                return BadRequest(new { Message = "Student request is required." });
+            } 
+
+            var result = _studentService.CreateStudent(request);
             return Ok(result);
         }
 
+        [HttpGet("Get all student")]
+        public IActionResult GetAllStudent()
+        {
+            var result = _studentService.GetStudents();
+            return Ok(result);
+        }
     }
 }

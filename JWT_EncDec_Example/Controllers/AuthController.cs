@@ -1,7 +1,5 @@
 ﻿using JWT_EncDec_Example.DTOs;
 using JWT_EncDec_Example.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JWT_EncDec_Example.Controllers
@@ -17,14 +15,14 @@ namespace JWT_EncDec_Example.Controllers
         }
 
         [HttpPost("admin")]
-        public IActionResult AdminLogin(LoginAdminRequestDto request)
+        public IActionResult AdminLogin([FromBody] LoginAdminRequestDto request)
         {
             var result = _authService.AuthenticateAdmin(request);
             if (result.IsSuccessful == false)
             {
                 return Unauthorized(new { Message = "Invalid admin credentials." });
             }
-            return Ok(new { Message = "Admin login successful!" });
+            return Ok(result);
         }
     }
 }

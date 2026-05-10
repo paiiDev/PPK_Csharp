@@ -12,18 +12,19 @@ namespace JWT_EncDec_Example.Helpers.EncryptService
             this.config = config;
         }
 
-        public string Enrypt(string plainText)
+        public string Encrypt(string plainText)
         {
             if (string.IsNullOrEmpty(plainText)) return plainText;
-            if (string.IsNullOrEmpty(config["EncryptionSettings:Key"]))
+            var encryptionKey = config["EncryptionSettings:Key"];
+            if (string.IsNullOrEmpty(encryptionKey))
             {
-                throw new ArgumentException("Secret key cannot be null or empty.", nameof(config["EncryptionSettings:Key"]));
+                throw new ArgumentException("Secret key cannot be null or empty.", "EncryptionSettings:Key");
             }
 
-            byte[] keyBytes = SHA256.HashData(Encoding.UTF8.GetBytes(config["EncryptionSettings:Key"]));
+            byte[] keyBytes = System.Security.Cryptography.SHA256.HashData(Encoding.UTF8.GetBytes(encryptionKey));
             byte[] iv = Bytes.GenerateIV();
 
-            string encryptedText = Strings.Encrypt(plainText, keyBytes, iv);
+            string encryptedText = Effortless.Net.Encryption.Strings.Encrypt(plainText, keyBytes, iv);
 
             string ivString = Convert.ToBase64String(iv);
 
@@ -33,9 +34,10 @@ namespace JWT_EncDec_Example.Helpers.EncryptService
         public string Decrypt(string cipherText)
         {
             if (string.IsNullOrEmpty(cipherText)) return cipherText;
-            if (string.IsNullOrEmpty(config["EncryptionSettings:Key"]))
+            var encryptionKey = config["EncryptionSettings:Key"];
+            if (string.IsNullOrEmpty(encryptionKey))
             {
-                throw new ArgumentException("Secret key cannot be null or empty.", nameof(config["EncryptionSettings:Key"]));
+                throw new ArgumentException("Secret key cannot be null or empty.", "EncryptionSettings:Key");
             }
             string[] parts = cipherText.Split(':', 2);
             if (parts.Length != 2)
@@ -44,8 +46,8 @@ namespace JWT_EncDec_Example.Helpers.EncryptService
             }
             byte[] iv = Convert.FromBase64String(parts[0]);
             string encryptedText = parts[1];
-            byte[] keyBytes = SHA256.HashData(Encoding.UTF8.GetBytes(config["EncryptionSettings:Key"]));
-            return Strings.Decrypt(encryptedText, keyBytes, iv);
+            byte[] keyBytes = System.Security.Cryptography.SHA256.HashData(Encoding.UTF8.GetBytes(encryptionKey));
+            return Effortless.Net.Encryption.Strings.Decrypt(encryptedText, keyBytes, iv);
         }
     }
 }
